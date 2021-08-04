@@ -1,0 +1,27 @@
+{% extends 'base/layout.html' %}
+    {% block body %}
+        <div class="container">
+            <div class="home">
+                <br>
+                <div class="title">
+                    <h1 class="text-align-center">{{ cate }} Categories</h1>
+                </div> <br>
+                {% if category_posts %}
+                    <div class="section">
+                        {% for post in category_posts %}
+                            <h1>{{ post.title }} | {{ post.author}} </h1> <p>Category - {{ post.category }}</p>
+                            {{ post.date }} <br>
+                            {{ post.body|slice:":100" }} <br> <br>
+                            <a class="btn btn-secondary" href="{% url 'article' post.pk %}">Read More</a>
+
+                            {% if user.is_authenticated %}
+                            <a class="btn btn-danger" href="{% url 'delete' post.pk %}">Delete</a> <br> <br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h1>This page does'nt exist</h1>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}

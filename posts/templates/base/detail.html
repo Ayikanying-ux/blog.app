@@ -1,0 +1,15 @@
+{% extends 'base/layout.html' %}
+    {% block body %}
+        <div class="container">
+            <br>
+            <div class="section">
+                <h1>{{ post.title }} | {{ post.author }}</h1>
+                    {{ post.date }} <br>
+                    {{ post.body }}
+            </div> <br>
+            <div class="reverse">
+                <a class="btn btn-secondary" href="{% url 'home' %}">BACK</a>
+                <a class="btn btn-danger" href="{% url 'delete' post.pk %}">Delete</a>
+            </div>
+        </div>
+    {% endblock %}

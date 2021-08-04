@@ -1,0 +1,23 @@
+{% extends 'base/layout.html' %}
+    {% block body %}
+        <div class="container">
+            <div class="home">
+                <br>
+                <div class="title">
+                    <h1 class="text-align-center">Blog Posts</h1>
+                </div> <br>
+                <div class="section">
+                    {% for post in object_list %}
+                    <h1>{{ post.title }} | {{ post.author}} </h1> <p>Category - <a href="{% url 'category' post.category %}">{{ post.category }}</a></p>
+                        {{ post.date }} <br>
+                        {{ post.body|slice:":100" }} <br> <br>
+                        <a class="btn btn-secondary" href="{% url 'article' post.pk %}">Read More</a>
+
+                        {% if user.is_authenticated %}
+                        <a class="btn btn-danger" href="{% url 'delete' post.pk %}">Delete</a> <br> <br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
