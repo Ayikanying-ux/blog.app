@@ -5,14 +5,14 @@
                 <h1>Register....</h1>
             </div>
             <br>
-            <div class="register">
+            <div class="register"> <br>
                 <div class="form-group">
                     <form action="" method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button class="btn btn-secondary">Register</button>
                     </form>
-                </div>
+                </div><br>
             </div>
         </div>
     {% endblock %}
