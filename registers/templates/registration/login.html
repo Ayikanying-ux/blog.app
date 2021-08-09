@@ -1,18 +1,17 @@
 {% extends 'base/layout.html' %}
-    {% block body %}
-        <div class="container">
-            <div class="title">
-                <h1>Login....</h1>
-            </div>
-            <br>
-            <div class="login">
-                <div class="form-group">
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button class="btn btn-secondary">Login</button>
-                    </form>
+    {% load crispy_forms_tags %}
+        {% block body %}
+            <div class="container">
+                <div class="title">
+                    <h1>Login....</h1>
+                </div>
+                <br>
+                <div class="login">
+                        <form action="" method="POST">
+                            {% csrf_token %} 
+                            {{ form |crispy }} <br>
+                            <button class="btn btn-secondary">Login</button> <br>
+                        </form>
                 </div>
             </div>
-        </div>
-    {% endblock %}
+        {% endblock %}
