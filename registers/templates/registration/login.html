@@ -7,11 +7,11 @@
                 </div>
                 <br>
                 <div class="login">
-                        <form action="" method="POST">
-                            {% csrf_token %} 
-                            {{ form |crispy }} <br>
-                            <button class="btn btn-secondary">Login</button> <br>
-                        </form>
+                    <form action="" method="POST">
+                        {% csrf_token %} 
+                        <p>{{ form |crispy }}</p>
+                        <button id="butt" class="btn btn-primary">Login</button> <br>
+                    </form>
                 </div>
             </div>
         {% endblock %}
