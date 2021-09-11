@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 from .forms import UserRegisterView, LoginForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
+from django.http import JsonResponse
+from django.views.generic.base import View
 
 # Create your views here.
 def CreateUser(request):
@@ -35,3 +36,14 @@ def login_request(request):
             messages.error(request, "Invalid username or password")
     context ={'form': form}
     return render(request, 'registration/login.html', context)
+
+    # checking for user using ajax
+class ValidateUsername(View):
+    def get(self, request):
+        username = request.GET.get('username', None)
+
+        data = {
+            'is_present': User.objects.filter(username_iexact=username).exists()
+        }
+
+        return JsonResponse(data)

@@ -120,7 +120,23 @@
     </nav>
     {% block body %}
     {% endblock %}
-
+    {% block javascript %}
+        $('#id_username').change(function() {
+            $.ajax({
+                url:'/ajax/validate-username/';
+                //url: '{% url 'validate-username' %}'
+                data = {
+                    'username': username
+                },
+                dataType: 'json',
+                success: function(data){
+                    if (data.is_present){
+                        alert("A user with this username already exists.");
+                    }
+                }
+            })
+        })
+    {% endblock javascript %}
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
